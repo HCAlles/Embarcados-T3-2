@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>750</width>
+    <height>487</height>
+   </rect>
+  </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
+  <property name="mouseTracking">
+   <bool>false</bool>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(182, 182, 182);</string>
+  </property>
+  <widget class="QLCDNumber" name="lcd">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>140</y>
+     <width>371</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>240</y>
+     <width>371</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="grid">
+    <property name="leftMargin">
+     <number>1</number>
+    </property>
+    <property name="topMargin">
+     <number>1</number>
+    </property>
+    <property name="rightMargin">
+     <number>1</number>
+    </property>
+    <property name="bottomMargin">
+     <number>1</number>
+    </property>
+    <property name="spacing">
+     <number>6</number>
+    </property>
+    <item row="1" column="1">
+     <widget class="QPushButton" name="b5">
+      <property name="styleSheet">
+       <string notr="true">background-color: #008CBA; /* blue */
+border: none;
+ color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+border-radius: 8px;</string>
+      </property>
+      <property name="text">
+       <string>5</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QPushButton" name="b7">
+      <property name="styleSheet">
+       <string notr="true">background-color: #008CBA; /* blue */
+border: none;
+ color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+border-radius: 8px;</string>
+      </property>
+      <property name="text">
+       <string>7</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="b4">
+      <property name="styleSheet">
+       <string notr="true">background-color: #008CBA; /* blue */
+border: none;
+ color: white;
+padding: 15px 32px;
+
+text-decoration: none;
+
+font-size: 16px;
+border-radius: 8px;</string>
+      </property>
+      <property name="text">
+       <string>4</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QPushButton" name="b1">
+      <property name="styleSheet">
+       <string notr="true">background-color: #008CBA; /* blue */
+border: none;
+ color: white;
+padding: 15px 32px;
+
+text-decoration: none;
+
+font-size: 16px;
+border-radius: 8px;</string>
+      </property>
+      <property name="text">
+       <string>1</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QPushButton" name="b6">
+      <property name="styleSheet">
+       <string notr="true">background-color: #008CBA; /* blue */
+border: none;
+ color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+border-radius: 8px;</string>
+      </property>
+      <property name="text">
+       <string>6</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QPushButton" name="b8">
+      <property name="styleSheet">
+       <string notr="true">background-color: #008CBA; /* blue */
+border: none;
+ color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+border-radius: 8px;</string>
+      </property>
+      <property name="text">
+       <string>8</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QPushButton" name="b9">
+      <property name="styleSheet">
+       <string notr="true">background-color: #008CBA; /* blue */
+border: none;
+ color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+border-radius: 8px;</string>
+      </property>
+      <property name="text">
+       <string>9</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="b2">
+      <property name="styleSheet">
+       <string notr="true">background-color: #008CBA; /* blue */
+border: none;
+ color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+border-radius: 8px;</string>
+      </property>
+      <property name="text">
+       <string>2</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QPushButton" name="b3">
+      <property name="styleSheet">
+       <string notr="true">background-color: #008CBA; /* blue */
+border: none;
+ color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+border-radius: 8px;</string>
+      </property>
+      <property name="text">
+       <string>3</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QPushButton" name="bApagar">
+      <property name="styleSheet">
+       <string notr="true">background-color: #008CBA; /* blue */
+border: none;
+ color: white;
+padding: 15px 32px;
+text-decoration: none;
+font-size: 16px;
+border-radius: 8px;</string>
+      </property>
+      <property name="text">
+       <string>Apagar</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QPushButton" name="b0">
+      <property name="styleSheet">
+       <string notr="true">background-color: #008CBA; /* blue */
+border: none;
+ color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+border-radius: 8px;</string>
+      </property>
+      <property name="text">
+       <string>0</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QPushButton" name="bEnter">
+      <property name="styleSheet">
+       <string notr="true">background-color: #008CBA; /* blue */
+border: none;
+ color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+border-radius: 8px;</string>
+      </property>
+      <property name="text">
+       <string>Enter</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>60</y>
+     <width>191</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 28pt &quot;MS Shell Dlg 2&quot;;</string>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>140</y>
+     <width>321</width>
+     <height>331</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="label_nome">
+      <property name="styleSheet">
+       <string notr="true">font: 63 11pt &quot;Yu Gothic UI Semibold&quot;;
+</string>
+      </property>
+      <property name="text">
+       <string>Nome completo:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit_nome"/>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_senha">
+      <property name="styleSheet">
+       <string notr="true">font: 63 11pt &quot;Yu Gothic UI Semibold&quot;;
+</string>
+      </property>
+      <property name="text">
+       <string>Senha:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit_senha"/>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_funcao">
+      <property name="styleSheet">
+       <string notr="true">font: 63 11pt &quot;Yu Gothic UI Semibold&quot;;
+</string>
+      </property>
+      <property name="text">
+       <string>Função:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit_funcao">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QToolButton" name="bLimpar">
+        <property name="styleSheet">
+         <string notr="true">
+
+
+background-color: rgb(108, 108, 108);
+border: none;
+ color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+
+font-size: 16px;
+border-radius: 8px;</string>
+        </property>
+        <property name="text">
+         <string>limpar</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="bCadastrar">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(108, 108, 108);
+border: none;
+ color: white;
+padding: 15px 32px;
+
+text-decoration: none;
+
+font-size: 16px;
+border-radius: 8px;font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Cadastrar</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

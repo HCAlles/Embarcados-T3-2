@@ -1,0 +1,29 @@
+def func_b0():
+     print("b0 clicado")
+def func_b1():
+     print("b1 clicado")
+def func_b2():
+     print("b2 clicado")
+def func_b3():
+     print("b3 clicado")
+def func_b4():
+     print("b4 clicado")
+def func_b5():
+     print("b5 clicado")
+def func_b6():
+     print("b6 clicado")
+def func_b7():
+     print("b7 clicado")
+def func_b8():
+     print("b8 clicado")
+def func_b9():
+     print("b9 clicado")
+def func_bLimpar():
+     print("bLimpar clicado")
+def func_bCadastrar():
+     print("bCadastrar clicado")
+def func_bApagar():
+     print("bApagar clicado")
+def func_bEnter():
+     print("bEnter clicado")
+

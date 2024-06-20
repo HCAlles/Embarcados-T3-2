@@ -1,0 +1,9 @@
+instalar python 3.9
+
+https://doc.qt.io/qtforpython-5/PySide2/QtWidgets/
+
+pip install pyqt5 pyqt5-tools
+pip install opencv-python
+
+  local designer.exe
+  C:\Users\nome-pc\AppDada\Roaming\Python39\site-packages\qt5_applications\Qt\bin
