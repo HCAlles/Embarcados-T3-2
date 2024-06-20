@@ -7,3 +7,11 @@ pip install opencv-python
 
   local designer.exe
   C:\Users\nome-pc\AppDada\Roaming\Python39\site-packages\qt5_applications\Qt\bin
+
+
+
+comandos git
+
+git commit -m "change"
+git remote add origin https://github.com/HCAlles/Embarcados-T3.git
+git push -u origin master
