@@ -24,19 +24,27 @@ if __name__ == "__main__":
     import sys
     con = sqlite3.connect("tutorial.db")
     cur=con.cursor()
-    cur.execute("CREATE TABLE registro(nome, senha, funcao)")
+    #cur.execute("CREATE TABLE registro(nome, senha, funcao)")
+    print("Criou TABLE registro")
+    '''cur.execute("""
+    DROP TABLE registro
+    """    
+    )
+    print("Deletou TABLE registro")'''
     cur.execute("""
-    INSERT INTO registro VALUES
-        ('test1','123','nada'),
-        ('test2','456','nada2')
-""")
+        INSERT INTO registro VALUES
+            ('test1','123','nada'),
+            ('test2','456','nada2')
+        """)
+    #print("Dados: "+str(cur.execute("SELECT ")))
+    
     data = [
     ("","",""),
     ("","",""),
     ("","",""),
 ]
     #cur.executemany("INSERT INTO registro VALUES(?, ?, ?)", data)
-    cur.execute("DELETE FROM COMPANY WHERE nome=test1")
+ #   cur.execute("DELETE FROM COMPANY WHERE nome=test1")
     
     con.commit()
 

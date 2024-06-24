@@ -15,3 +15,7 @@ comandos git
 git commit -m "change"
 git remote add origin https://github.com/HCAlles/Embarcados-T3.git
 git push -u origin master
+
+
+https://www.w3schools.com/sql/ para string do sqlite3
+https://www.tutorialspoint.com/sqlite/sqlite_python.htm
