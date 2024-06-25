@@ -2,7 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from ui import Ui_Dialog
 from func_b import *
 import sqlite3
-
+senha_digitada=""
 def func_():
     print("testando")
 def func_senha():
@@ -20,35 +20,39 @@ def func_bCadastrar():
      ui.label_funcao.setText("Funcao: "+ui.lineEdit_funcao.text())
      ui.label_nome.setText("Nome: "+ui.lineEdit_nome.text())
 
+     
 if __name__ == "__main__":
     import sys
-    con = sqlite3.connect("tutorial.db")
-    cur=con.cursor()
-    #cur.execute("CREATE TABLE registro(nome, senha, funcao)")
+    '''cur.execute("CREATE TABLE registro(nome, senha, funcao)")
+    
+    
     print("Criou TABLE registro")
-    '''cur.execute("""
+    cur.execute("""
     DROP TABLE registro
-    """    
-    )
-    print("Deletou TABLE registro")'''
+    """)
+    
+    ######  cria table
     cur.execute("""
         INSERT INTO registro VALUES
             ('test1','123','nada'),
             ('test2','456','nada2')
         """)
+    ###### 
+    
+    senha=cur.execute("""
+        SELECT senha FROM registro
+        WHERE nome='test1'; """)
     #print("Dados: "+str(cur.execute("SELECT ")))
     
     data = [
     ("","",""),
     ("","",""),
-    ("","",""),
-]
+    ("","",""),]
     #cur.executemany("INSERT INTO registro VALUES(?, ?, ?)", data)
- #   cur.execute("DELETE FROM COMPANY WHERE nome=test1")
+    #cur.execute("DELETE FROM registro WHERE nome=test1")
     
     con.commit()
-
-#test
+    '''
 
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QDialog()

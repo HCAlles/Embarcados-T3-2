@@ -282,17 +282,24 @@ border-radius: 8px;</string>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>470</x>
+     <x>460</x>
      <y>60</y>
-     <width>191</width>
+     <width>211</width>
      <height>81</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 75 28pt &quot;MS Shell Dlg 2&quot;;</string>
+    <string notr="true">font: 75 28pt &quot;MS Shell Dlg 2&quot;;
+
+border: none;
+ color: Black;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+border-radius: 8px;</string>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>Registro</string>
    </property>
   </widget>
   <widget class="QWidget" name="verticalLayoutWidget">

@@ -173,8 +173,15 @@ class Ui_Dialog(object):
         self.bEnter.setObjectName("bEnter")
         self.grid.addWidget(self.bEnter, 3, 2, 1, 1)
         self.label = QtWidgets.QLabel(Dialog)
-        self.label.setGeometry(QtCore.QRect(470, 60, 191, 81))
-        self.label.setStyleSheet("font: 75 28pt \"MS Shell Dlg 2\";")
+        self.label.setGeometry(QtCore.QRect(460, 60, 211, 81))
+        self.label.setStyleSheet("font: 75 28pt \"MS Shell Dlg 2\";\n"
+"\n"
+"border: none;\n"
+" color: Black;\n"
+"padding: 15px 32px;\n"
+"text-align: center;\n"
+"text-decoration: none;\n"
+"border-radius: 8px;")
         self.label.setObjectName("label")
         self.verticalLayoutWidget = QtWidgets.QWidget(Dialog)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(410, 140, 321, 331))
@@ -256,7 +263,7 @@ class Ui_Dialog(object):
         self.bApagar.setText(_translate("Dialog", "Apagar"))
         self.b0.setText(_translate("Dialog", "0"))
         self.bEnter.setText(_translate("Dialog", "Enter"))
-        self.label.setText(_translate("Dialog", "TextLabel"))
+        self.label.setText(_translate("Dialog", "Registro"))
         self.label_nome.setText(_translate("Dialog", "Nome completo:"))
         self.label_senha.setText(_translate("Dialog", "Senha:"))
         self.label_funcao.setText(_translate("Dialog", "Função:"))

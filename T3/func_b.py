@@ -1,6 +1,13 @@
 from main import*
-senha_digitada=""
-senha="12345678"
+import sqlite3
+
+con=sqlite3.connect("tutorial.db")
+cur=con.cursor()
+dados_senha=cur.execute("SELECT senha from registro where nome='test1'")
+for linha in dados_senha.fetchall():
+        senhas=linha
+con.commit()
+
 def func_b0():
      print("b0 clicado")
      global senha_digitada
@@ -41,10 +48,7 @@ def func_b9():
      global senha_digitada
      print("b9 clicado")
      senha_digitada=senha_digitada+"9"
-def func_bLimpar():
-     global senha_digitada
-     print("bLimpar clicado")
-     senha_digitada=""
+
 def func_bCadastrar():
      global senha_digitada
      print("bCadastrar clicado")
@@ -54,15 +58,17 @@ def func_bApagar():
      senha_digitada=""
 def func_bEnter():
      global senha_digitada
-     
+     global dados_senha
+     global senhas
      print("bEnter clicado")
-     print(senha_digitada)
-     if senha_digitada==senha:
+     
+     if senha_digitada==senhas[0]:
           print("senha correta")
      else: 
           
           print("Erro")
-          print(senha_digitada+" diferente de"+senha)
+          print(senha_digitada+" diferente de "+senhas[0])
+
 
      
 
