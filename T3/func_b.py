@@ -9,6 +9,7 @@ for linha in dados_senha.fetchall():
         senhas=linha
 con.commit()
 
+entrada=True
 
 senha_digitada=""
 app = QtWidgets.QApplication(sys.argv)
@@ -41,56 +42,79 @@ def func_inicia_ui():
      ui.b7.clicked.connect(func_b7)
      ui.b8.clicked.connect(func_b8)
      ui.b9.clicked.connect(func_b9)
-     
+     ui.bEntrada_saida.clicked.connect(func_bEntrada_saida)
      ui.bApagar.clicked.connect(func_bApagar)
      ui.bCadastrar.clicked.connect(func_bCadastrar)
      ui.bEnter.clicked.connect(func_bEnter)
      ui.bLimpar.clicked.connect(func_bLimpar)
      Dialog.show()
      sys.exit(app.exec_())
-
+def func_atualiza_display():
+     global ui
+     global senha_digitada
+     ui.label_digite_a_senha.setText("Digite a senha: "+senha_digitada)
+     ui.label_digite_o_ID.setText("Digite a ID: "+senha_digitada)
 
 def func_b0():
      print("b0 clicado")
      global senha_digitada
      senha_digitada=senha_digitada+"0"
+     func_atualiza_display()
 def func_b1():
      global senha_digitada
      print("b1 clicado")
      senha_digitada=senha_digitada+"1"
+     func_atualiza_display()
 def func_b2():
      global senha_digitada
      print("b2 clicado")
      senha_digitada=senha_digitada+"2"
+     func_atualiza_display()
 def func_b3():
      global senha_digitada
      print("b3 clicado")
      senha_digitada=senha_digitada+"3"
+     func_atualiza_display()
 def func_b4():
      global senha_digitada
      print("b4 clicado")
      senha_digitada=senha_digitada+"4"
+     func_atualiza_display()
 def func_b5():
      global senha_digitada
      print("b5 clicado")
      senha_digitada=senha_digitada+"5"
+     func_atualiza_display()
 def func_b6():
      global senha_digitada
      print("b6 clicado")
      senha_digitada=senha_digitada+"6"
+     func_atualiza_display()
 def func_b7():
      global senha_digitada
      print("b7 clicado")
      senha_digitada=senha_digitada+"7"
+     func_atualiza_display()
 def func_b8():
      global senha_digitada
      print("b8 clicado")
      senha_digitada=senha_digitada+"8"
+     func_atualiza_display()
 def func_b9():
      global senha_digitada
      print("b9 clicado")
      senha_digitada=senha_digitada+"9"
+     func_atualiza_display()
 
+def func_bEntrada_saida():
+     global entrada
+     global ui
+     
+     entrada=not entrada
+     
+     if(entrada):
+          ui.bEntrada_saida.setText("entrada")
+     else: ui.bEntrada_saida.setText("saida")
 def func_bCadastrar():
      global senha_digitada
      global ui
