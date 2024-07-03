@@ -1,0 +1,25 @@
+instalar python 3.9
+
+https://doc.qt.io/qtforpython-5/PySide2/QtWidgets/
+
+pip install pyqt5 pyqt5-tools
+pip install opencv-python
+
+  local designer.exe
+  C:\Users\nome-pc\AppDada\Roaming\Python39\site-packages\qt5_applications\Qt\bin
+
+
+
+converte untitled.ui em ui.py:
+python -m PyQt5.uic.pyuic untitled.ui -o ui.py –x
+
+
+comandos git
+
+git commit -m "change"
+git remote add origin https://github.com/HCAlles/Embarcados-T3.git
+git push -u origin master
+
+
+https://www.w3schools.com/sql/ para string do sqlite3
+https://www.tutorialspoint.com/sqlite/sqlite_python.htm
