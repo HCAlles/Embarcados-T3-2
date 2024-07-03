@@ -266,12 +266,12 @@ border-radius: 8px;</string>
     </item>
    </layout>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="label_registro">
    <property name="geometry">
     <rect>
      <x>460</x>
-     <y>60</y>
-     <width>211</width>
+     <y>30</y>
+     <width>221</width>
      <height>81</height>
     </rect>
    </property>
@@ -401,7 +401,7 @@ border-radius: 8px;font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
-     <widget class="QLabel" name="label_digite_a_senha">
+     <widget class="QLabel" name="label_digite_o_ID">
       <property name="styleSheet">
        <string notr="true">font: 63 11pt &quot;Yu Gothic UI Semibold&quot;;
 </string>
@@ -412,7 +412,7 @@ border-radius: 8px;font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_digite_o_ID">
+     <widget class="QLabel" name="label_digite_a_senha">
       <property name="styleSheet">
        <string notr="true">font: 63 11pt &quot;Yu Gothic UI Semibold&quot;;
 </string>
@@ -429,7 +429,7 @@ border-radius: 8px;font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
     <rect>
      <x>0</x>
      <y>60</y>
-     <width>211</width>
+     <width>391</width>
      <height>71</height>
     </rect>
    </property>
@@ -469,6 +469,22 @@ border-radius: 8px;</string>
    </property>
    <property name="text">
     <string>Entrada</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_ID">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>480</y>
+     <width>321</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 16pt &quot;Yu Gothic UI Semibold&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Seu ID é:</string>
    </property>
   </widget>
  </widget>

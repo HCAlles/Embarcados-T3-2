@@ -1,26 +1,35 @@
 from main import*
 import sqlite3
 import sys
+import random
+import string
 
-con=sqlite3.connect("tutorial.db")
-cur=con.cursor()
-dados_senha=cur.execute("SELECT senha from registro where nome='test2'")
-for linha in dados_senha.fetchall():
-        senhas=linha
-con.commit()
-
+dados_senha=0
+senhas=0
 entrada=True
-
+marcador_ID_senha=True
+ID="231"
+ID_digitado=""
 senha_digitada=""
 app = QtWidgets.QApplication(sys.argv)
 Dialog = QtWidgets.QDialog()
 ui = Ui_Dialog()
 ui.setupUi(Dialog)
 
-def func_():
-    print("testando")
-def func_senha():
-    print(str(ui.lineEdit_senha.text()))
+def func_get_senha():
+     con=sqlite3.connect("tutorial.db")
+     cur=con.cursor()
+     global dados_senha
+     global senhas
+     dados_senha=cur.execute("SELECT senha from registro where nome='test2'")
+     for linha in dados_senha.fetchall():
+        senhas=linha
+     con.commit()
+def func_transform_to_random_digits(input_string):
+    random.seed(input_string)
+    random_digits = ''.join(random.choices('0123456789', k=5))
+    return str(random_digits)
+
 
 def func_bLimpar():
      print("bLimpar clicado")
@@ -31,7 +40,6 @@ def func_inicia_ui():
      global ui
      global app
      global Dialog
-     ui.bCadastrar.clicked.connect(func_senha)
      ui.b0.clicked.connect(func_b0)
      ui.b1.clicked.connect(func_b1)
      ui.b2.clicked.connect(func_b2)
@@ -49,62 +57,47 @@ def func_inicia_ui():
      ui.bLimpar.clicked.connect(func_bLimpar)
      Dialog.show()
      sys.exit(app.exec_())
-def func_atualiza_display():
+def func_atualiza_display(digito):
      global ui
      global senha_digitada
-     ui.label_digite_a_senha.setText("Digite a senha: "+senha_digitada)
-     ui.label_digite_o_ID.setText("Digite a ID: "+senha_digitada)
-
+     global marcador_ID_senha
+     global ID_digitado
+     if not marcador_ID_senha:
+          senha_digitada=senha_digitada+digito
+          ui.label_digite_a_senha.setText("Digite a senha: "+senha_digitada)
+     else:
+          ID_digitado=ID_digitado+digito
+          ui.label_digite_o_ID.setText("Digite o ID: "+ID_digitado)
 def func_b0():
      print("b0 clicado")
-     global senha_digitada
-     senha_digitada=senha_digitada+"0"
-     func_atualiza_display()
+     func_atualiza_display("0")
 def func_b1():
-     global senha_digitada
      print("b1 clicado")
-     senha_digitada=senha_digitada+"1"
-     func_atualiza_display()
-def func_b2():
-     global senha_digitada
+     func_atualiza_display("1")
+def func_b2(): 
      print("b2 clicado")
-     senha_digitada=senha_digitada+"2"
-     func_atualiza_display()
+     func_atualiza_display("2")
 def func_b3():
-     global senha_digitada
      print("b3 clicado")
-     senha_digitada=senha_digitada+"3"
-     func_atualiza_display()
+     func_atualiza_display("3")
 def func_b4():
-     global senha_digitada
      print("b4 clicado")
-     senha_digitada=senha_digitada+"4"
-     func_atualiza_display()
+     func_atualiza_display("4")
 def func_b5():
-     global senha_digitada
      print("b5 clicado")
-     senha_digitada=senha_digitada+"5"
-     func_atualiza_display()
+     func_atualiza_display("5")
 def func_b6():
-     global senha_digitada
      print("b6 clicado")
-     senha_digitada=senha_digitada+"6"
-     func_atualiza_display()
+     func_atualiza_display("6")
 def func_b7():
-     global senha_digitada
      print("b7 clicado")
-     senha_digitada=senha_digitada+"7"
-     func_atualiza_display()
+     func_atualiza_display("7")
 def func_b8():
-     global senha_digitada
      print("b8 clicado")
-     senha_digitada=senha_digitada+"8"
-     func_atualiza_display()
+     func_atualiza_display("8")
 def func_b9():
-     global senha_digitada
      print("b9 clicado")
-     senha_digitada=senha_digitada+"9"
-     func_atualiza_display()
+     func_atualiza_display("9")
 
 def func_bEntrada_saida():
      global entrada
@@ -116,38 +109,86 @@ def func_bEntrada_saida():
           ui.bEntrada_saida.setText("entrada")
      else: ui.bEntrada_saida.setText("saida")
 def func_bCadastrar():
-     global senha_digitada
      global ui
      con=sqlite3.connect("tutorial.db")
      cur=con.cursor()
-     teste = 'terroso'
      print("bCadastrar clicado")
      ui.label_senha.setText("Senha: "+ui.lineEdit_senha.text())
      ui.label_funcao.setText("Funcao: "+ui.lineEdit_funcao.text())
      ui.label_nome.setText("Nome: "+ui.lineEdit_nome.text())
-     string_cadastro="INSERT into registro values "+"('"+ui.lineEdit_nome.text()+"','"+ui.lineEdit_senha.text()+"','"+ui.lineEdit_funcao.text()+"')"
+     ID_final=func_transform_to_random_digits(ui.lineEdit_nome.text())
+     ui.label.setText("Registro  Seu ID é: "+ID_final)
+     string_cadastro="INSERT into registro values "+"('"+ui.lineEdit_nome.text()+"','"+ui.lineEdit_senha.text()+"','"+ui.lineEdit_funcao.text()+"','"+ID_final+"')"
      print("string cadastro é: "+string_cadastro)
+     print("func_getValues_from_db  retornou: "+str(func_getValues_from_db('test2')))
+     if(ui.lineEdit_senha.text()==func_getValues_from_db(ui.lineEdit_senha.text())[0][1]):
+          print(ui.lineEdit_senha.text()+" já existe")
+     else:
+          print("FFFFFFOOOOOIIII")
      cur.execute(string_cadastro)
      con.commit()
      
-     
-     
+def func_getValues_from_db(search_value):
+    con = sqlite3.connect('tutorial.db')
+    cur = con.cursor()
+    senhas=""
+    try:
+        # Construct the SQL query to search for the value in any column
+        query = 'SELECT * FROM registro WHERE nome = ? OR senha = ? OR funcao = ? OR ID = ?'
+        # Execute the query with parameterized input
+        a=cur.execute(query, (search_value, search_value, search_value, search_value))
+        rows = a.fetchall()
+        con.close()
+        return rows
+    except sqlite3.Error as e:
+        print(f"Error searching registro by value in SQLite database: {e}")
+        return "Erro"
+
 def func_bApagar():
      global senha_digitada
-     print("bApagar clicado")
+     global ID_digitado
+     global marcador_ID_senha
+     marcador_ID_senha=True
      senha_digitada=""
+     ID_digitado=""
+     ui.label_digite_a_senha.setText("Digite a senha: ")
+     ui.label_digite_o_ID.setText("Digite o ID: ")
+     ui.label_acesso.setText("Acesso:")
+     
 def func_bEnter():
      global senha_digitada
      global dados_senha
      global senhas
+     global ui
+     global marcador_ID_senha
+     global ID
+     global ID_digitado
      print("bEnter clicado")
+     func_get_senha()
      
-     if senha_digitada==senhas[0]:
-          print("senha correta")
-     else: 
-          print("Erro")
-          print(senha_digitada+" diferente de "+senhas[0])
-
+     
+     if not marcador_ID_senha:
+          if senha_digitada==senhas[0]:
+               print("senha correta")
+               ui.label_acesso.setText("Acesso: Autorizado")
+               marcador_ID_senha=True
+          else: 
+               print("Erro")
+               print("senha_digitada: "+senha_digitada+" diferente de: "+senhas[0])
+               ui.label_acesso.setText("Acesso: Negado")
+               ui.label_digite_a_senha.setText("Digite a senha: ")
+               senha_digitada=""
+     
+     if  marcador_ID_senha:
+          if ID_digitado==ID:
+               print("ID_digitado == ID")
+               marcador_ID_senha=False
+          else:
+               print("ID_digitado: "+ID_digitado+" diferente de ID:"+ID)
+               func_bApagar() 
+          
+     
+          
 
      
 
