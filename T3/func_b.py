@@ -102,9 +102,7 @@ def func_b9():
 def func_bEntrada_saida():
      global entrada
      global ui
-     
      entrada=not entrada
-     
      if(entrada):
           ui.bEntrada_saida.setText("entrada")
      else: ui.bEntrada_saida.setText("saida")
@@ -120,32 +118,38 @@ def func_bCadastrar():
      ui.label.setText("Registro  Seu ID é: "+ID_final)
      string_cadastro="INSERT into registro values "+"('"+ui.lineEdit_nome.text()+"','"+ui.lineEdit_senha.text()+"','"+ui.lineEdit_funcao.text()+"','"+ID_final+"')"
      print("string cadastro é: "+string_cadastro)
-     print("func_getValues_from_db  retornou: "+str(func_getValues_from_db('test2')))
-     '''     
-     if(ui.lineEdit_senha.text()==func_getValues_from_db(ui.lineEdit_senha.text())[0][1]):
-          print(ui.lineEdit_senha.text()+" já existe")
-     else:
-          print("FFFFFFOOOOOIIII")
-     '''
-     cur.execute(string_cadastro)
+     
+     func_check_cadastro()
+     #cur.execute(string_cadastro)
      con.commit()
      
-def func_getValues_from_db(search_value):
+def func_check_cadastro():
+    global ui
+    s=ui.lineEdit_senha.text()
+    n=ui.lineEdit_nome.text()
+    f=ui.lineEdit_funcao.text()
     con = sqlite3.connect('tutorial.db')
     cur = con.cursor()
-    senhas=""
-    try:
-        # Construct the SQL query to search for the value in any column
-        query = 'SELECT * FROM registro WHERE nome = ? OR senha = ? OR funcao = ? OR ID = ?'
-        # Execute the query with parameterized input
-        a=cur.execute(query, (search_value, search_value, search_value, search_value))
-        rows = a.fetchall()
-        con.close()
-        return rows
-    except sqlite3.Error as e:
-        print(f"Error searching registro by value in SQLite database: {e}")
-        return "Erro"
-
+    dados=cur.execute("""select * from registro""")
+    dados=dados.fetchall()
+    print(dados)
+    contador=0
+    for cont in dados:
+     for i in range(0,3):
+          match i:
+               case 0:
+                    s=ui.lineEdit_nome.text()
+               case 1:
+                    s=ui.lineEdit_senha.text()
+               case 2:
+                    s=ui.lineEdit_funcao.text()
+               case _:
+                    print("i fora do range")
+          if cont[i]==s:#index de cont é as rows do banco de dados: nome,senha,funcao,ID
+               print("achou")
+          else:
+               print("não achou")
+               
 def func_bApagar():
      global senha_digitada
      global ID_digitado
@@ -167,7 +171,6 @@ def func_bEnter():
      global ID_digitado
      print("bEnter clicado")
      func_get_senha()
-     
      
      if not marcador_ID_senha:
           if senha_digitada==senhas[0]:
