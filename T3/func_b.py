@@ -7,7 +7,7 @@ import string
 dados_senha=0
 senhas=0
 entrada=True
-marcador_ID_senha=True
+marcador_ID_senha=0
 ID=""
 ID_digitado=""
 senha_digitada=""
@@ -16,26 +16,26 @@ Dialog = QtWidgets.QDialog()
 ui = Ui_Dialog()
 ui.setupUi(Dialog)
 
-def func_get_senha():
-     con=sqlite3.connect("tutorial.db")
-     cur=con.cursor()
-     global dados_senha
-     global senhas
-     dados_senha=cur.execute("SELECT senha from registro where nome='test2'")
-     for linha in dados_senha.fetchall():
-        senhas=linha
-     con.commit()
+
 def func_transform_to_random_digits(input_string):
     random.seed(input_string)
     random_digits = ''.join(random.choices('0123456789', k=5))
     return str(random_digits)
 
-
+def func_contains_non_digit_characters(input_string):
+    for char in input_string:
+        if not char.isdigit():
+            return True
+    return False
 def func_bLimpar():
      print("bLimpar clicado")
      ui.lineEdit_senha.setText("")
      ui.lineEdit_funcao.setText("")
      ui.lineEdit_nome.setText("")
+     ui.label_senha.setText("Senha: ")
+     ui.label_nome.setText("Nome: ")
+     ui.label_funcao.setText("Funcao: ")
+     ui.label_ID.setText("Seu id é: ")
 def func_inicia_ui():
      global ui
      global app
@@ -62,7 +62,7 @@ def func_atualiza_display(digito):
      global senha_digitada
      global marcador_ID_senha
      global ID_digitado
-     if not marcador_ID_senha:
+     if marcador_ID_senha==1:# se False senha, se nao id
           senha_digitada=senha_digitada+digito
           ui.label_digite_a_senha.setText("Digite a senha: "+senha_digitada)
      else:
@@ -132,50 +132,14 @@ def func_bCadastrar():
      con.commit()
      
 def func_check_cadastro():
-    global ui
-    s=ui.lineEdit_senha.text()
-    con = sqlite3.connect('tutorial.db')
-    cur = con.cursor()
-    dados=cur.execute("""select * from registro""")
-    dados=dados.fetchall()
-    print(dados)
-    contador=0 #conta quantos informações são repitidas
-    
-    for cont in dados:
-     for i in range(0,3):
-          match i:
-               case 0:
-                    s=ui.lineEdit_nome.text()
-               case 1:
-                    s=ui.lineEdit_senha.text()
-               case 2:
-                    s=ui.lineEdit_funcao.text()
-               case _:
-                    print("i fora do range")
-          if cont[i]==s:#index de cont é as rows do banco de dados: nome,senha,funcao,ID
-               print("achou")
-               contador=1
-          else:
-               print("não achou")
-    con.close()           
-    if contador==1:
-          contador=0
-          return True
-    else:
-          contador=0
-          return False
-def func_confere_ID():######################################
-     print("conferindo ID")   
      global ui
-     global ID_digitado
-
+     s=ui.lineEdit_senha.text()
      con = sqlite3.connect('tutorial.db')
      cur = con.cursor()
      dados=cur.execute("""select * from registro""")
      dados=dados.fetchall()
      print(dados)
      contador=0 #conta quantos informações são repitidas
-     
      for cont in dados:
           for i in range(0,3):
                match i:
@@ -198,12 +162,48 @@ def func_confere_ID():######################################
                return True
      else:
                contador=0
-               return False           
+               if not func_contains_non_digit_characters(ui.lineEdit_senha.text()):
+                    return False     
+               else:
+                    print("Senha só pode ter numeros")
+                    ui.label_senha.setText("Senha: senha só pode ter numeros")
+               
+def func_confere_ID_senha():######################################
+     print("conferindo ID")   
+     global ui
+     global ID_digitado
+     global senha_digitada
+     con = sqlite3.connect('tutorial.db')
+     cur = con.cursor()
+     dados_ID=cur.execute("""select ID from registro""")
+     dados_ID=dados_ID.fetchall()
+     print(dados_ID)
+     dados_senha=cur.execute("""select senha from registro""")
+     dados_senha=dados_senha.fetchall()
+     print(dados_senha)
+     contador=0 #conta quantos informações são repitidas
+     r=ID_digitado
+     s=senha_digitada
+     for cont in dados_ID:
+          if cont[0]==r:
+               print("achou_ID")
+               for cont2 in dados_senha:
+                    if cont2[0]==s:
+                         print("achou senha")
+                         return True
+                    else:
+                         print("não achou senha")
+          else:
+               print("não achou ID")
+               print("cont: "+str(cont)+" diferente de r: "+str(r))
+     con.close()
+     print("retornando False porque não achou ID e senhas compativeis")           
+     return False           
 def func_bApagar():
      global senha_digitada
      global ID_digitado
      global marcador_ID_senha
-     marcador_ID_senha=True
+     marcador_ID_senha=0
      senha_digitada=""
      ID_digitado=""
      ui.label_digite_a_senha.setText("Digite a senha: ")
@@ -211,46 +211,28 @@ def func_bApagar():
      ui.label_acesso.setText("Acesso:")
      
 def func_bEnter():##########################################
-     global dados_senha
-     global senhas
      global ui
      global marcador_ID_senha
-     global ID
-
-     global ID_digitado
-     global senha_digitada
      print("bEnter clicado")
-     func_get_senha()
-     
-     if not marcador_ID_senha:
-          if senha_digitada==senhas[0]:
-               print("senha correta")
-               ui.label_acesso.setText("Acesso: Autorizado")
-               marcador_ID_senha=True
-          else: 
-               print("Erro")
-               print("senha_digitada: "+senha_digitada+" diferente de: "+senhas[0])
-               ui.label_acesso.setText("Acesso: Negado")
-               ui.label_digite_a_senha.setText("Digite a senha: ")
-               senha_digitada=""
-     
-     if  marcador_ID_senha:
-          #func_confere_ID()#retorna
-          '''
-          if func_confere_ID(ID_digitado): # func_confere_ID() recebe ID_digitado, varre o banco de dados 
-               print("ID_digitado == ID")
-               marcador_ID_senha=False
+     if marcador_ID_senha==1:
+          if func_confere_ID_senha():
+               print("acesso autorizado")
+               marcador_ID_senha=3
           else:
-               print("ID_digitado: "+ID_digitado+" diferente de ID:"+ID)
-               func_bApagar() 
-          ''' 
-          if ID_digitado==ID:
-               print("ID_digitado == ID")
-               marcador_ID_senha=False
-          else:
-               print("ID_digitado: "+ID_digitado+" diferente de ID:"+ID)
-               func_bApagar() 
-          
+               print("acesso negado")
+               marcador_ID_senha=2
+     if  marcador_ID_senha==0:
+          marcador_ID_senha+=1
+     if marcador_ID_senha==2:
+          func_bApagar()
+          ui.label_acesso.setText("Acesso: Negado")
+     if marcador_ID_senha==3:
+          func_bApagar()
+          ui.label_acesso.setText("Acesso: Autorizado")
+
+
+     
+               
      
           
 
