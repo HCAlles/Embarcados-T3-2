@@ -1,10 +1,15 @@
 import sqlite3
 import sys
+import os
 import random
+import cv2
 import string
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPixmap, QImage
 from ui import Ui_Dialog
 from datetime import datetime
+import numpy
+
 
 dados_senha=0
 senhas=0
@@ -19,6 +24,30 @@ Dialog = QtWidgets.QDialog()
 ui = Ui_Dialog()
 ui.setupUi(Dialog)
 
+def func_store_image_in_database(ID_digitado):
+    con = sqlite3.connect('tutorial2.db')
+    cur = con.cursor()
+    cur.execute(f"CREATE TABLE IF NOT EXISTS imagens (image_id TEXT PRIMARY KEY, image BLOB)")
+    image_path = os.path.join('img', ID_digitado)
+    img = cv2.imread(image_path)
+    img_bytes = cv2.imencode('.png', img)[1].tobytes()
+    image_id = os.path.splitext(ID_digitado)[0]  
+    cur.execute(f"INSERT OR REPLACE INTO imagens (image_id, image) VALUES (?, ?)", (image_id, sqlite3.Binary(img_bytes)))
+    con.commit()
+    con.close()
+
+def func_retrieve_image_from_database(ID_digitado):
+    conn = sqlite3.connect('tutorial2.db')
+    cursor = conn.cursor()
+    cursor.execute(f"SELECT image FROM imagens WHERE image_id = {ID_digitado}")
+    conn.close()
+    image_data = cursor.fetchone()[0]
+    img_np = cv2.imdecode(numpy.frombuffer(image_data, numpy.uint8), cv2.IMREAD_COLOR)
+    return img_np
+    
+
+    
+    
 
 def func_transform_to_random_digits(input_string):
     random.seed(input_string)
@@ -115,9 +144,9 @@ def func_bEntrada_saida():#var global entrada: 0 ou 1
           print("setando entrada= "+entrada)
           ui.bEntrada_saida.setText("saida")
 
-
 def func_bCadastrar():
      global ui
+     global ID_digitado
      con=sqlite3.connect("tutorial2.db")
      cur=con.cursor()
      print("bCadastrar clicado")
@@ -132,6 +161,7 @@ def func_bCadastrar():
      print("string cadastro é: "+string_cadastro)
      
      if func_check_cadastro()==False:
+          func_store_image_in_database(str(ID_digitado)+'.png')
           ui.label_ID.setText("Seu ID é: "+str(ID_final))
           cur.execute(string_cadastro)
 
@@ -237,7 +267,6 @@ def func_check_local(ID_digitado):
                print(str(i)+" diferente de: "+ID_digitado)
                
           print(i)
-
 def func_bApagar():
      global senha_digitada
      global ID_digitado
@@ -247,8 +276,9 @@ def func_bApagar():
      ID_digitado=""
      ui.label_digite_a_senha.setText("Digite a senha: ")
      ui.label_digite_o_ID.setText("Digite o ID: ")
-     ui.label_acesso.setText("Acesso:")
-     
+     ui.label_acesso.setText("Acesso:")  
+     qpixmap=QPixmap('')
+     ui.label_imagem.setPixmap(qpixmap)  
 def func_current_time():
     now = datetime.now()
     hour_minute_str = now.strftime("%H:%M")
@@ -293,44 +323,54 @@ def func_bEnter():##########################################
      if marcador_ID_senha==1:
           if func_confere_ID_senha():
                if func_check_local(ID_digitado):
-                    print("acesso autorizado")#########################
-                    #invertendo entrada para colocar na DB
-                    entrada2=""
-                    match entrada:
-                         case "1":
-                              entrada2="0"
-                         case "0":
-                              entrada2="1"
-                         case _:
-                              print("erro no match entrada")
-                    con=sqlite3.connect("tutorial2.db")
-                    cur=con.cursor()
-                    quary = "UPDATE registro SET status_local ="+entrada2 +" WHERE ID ="+ID_digitado
-                    cur.execute(quary)
-                    print("tentando setar status_local em "+entrada2)
-                    con.commit()
-                    #con.close()
-                    marcador_ID_senha=3
+                    if func_check_horario(ID_digitado):
+                         print("acesso autorizado")#########################
+                         #invertendo entrada para colocar na DB
+                         entrada2=""
+                         match entrada:
+                              case "1":
+                                   entrada2="0"
+                              case "0":
+                                   entrada2="1"
+                              case _:
+                                   print("erro no match entrada")
+                         con=sqlite3.connect("tutorial2.db")
+                         cur=con.cursor()
+                         quary = "UPDATE registro SET status_local ="+entrada2 +" WHERE ID ="+ID_digitado
+                         cur.execute(quary)
+                         print("tentando setar status_local em "+entrada2)
+                         con.commit()
+                         #con.close()
+                         marcador_ID_senha=3
+                    else: 
+                         marcador_ID_senha=2
+                         print("acesso negado porque func_check_horario retornou False")
                else:
                     print("acesso negado porque entrada==func_check_local() retornou False")
                     #print(str(entrada)+" diferente de: "+str(func_check_local(ID_digitado)))
                     marcador_ID_senha=2
           else:
-               print("acesso negado porque func_check_ID_senha() retornou False")
+               print("acesso negado porque func_confere_ID_senha() retornou False")
                marcador_ID_senha=2
      if  marcador_ID_senha==0:
           marcador_ID_senha+=1
+          try:
+               retrieved_image = func_retrieve_image_from_database(ID_digitado)
+               height, width, channel = retrieved_image.shape
+               bytes_per_line = 3 * width
+               qimg = QImage(retrieved_image.data, width, height, bytes_per_line, QImage.Format_BGR888)
+               qpixmap = QPixmap.fromImage(qimg)
+               ui.label_imagem.setPixmap(qpixmap)
+          except:
+               print("não deu para carregar imagem")
      if marcador_ID_senha==2:
           func_bApagar()
           ui.label_acesso.setText("Acesso: Negado")
      if marcador_ID_senha==3:
-          if func_check_horario(ID_digitado):
-               func_bApagar()
-               ui.label_acesso.setText("Acesso: Autorizado")
-          else:
-               func_bApagar()
-               ui.label_acesso.setText("Acesso: Negado, fora de horario")
+          func_bApagar()
+          ui.label_acesso.setText("Acesso: Autorizado")
           
+               
 
      
                

@@ -32,5 +32,8 @@ if __name__ == "__main__":
     
     con.commit()
     '''
+    func_bEntrada_saida()
     func_inicia_ui()
+    
+    
     

@@ -26,64 +26,6 @@ class Ui_Dialog(object):
         self.grid.setContentsMargins(1, 1, 1, 1)
         self.grid.setSpacing(6)
         self.grid.setObjectName("grid")
-        self.b4 = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.b4.setStyleSheet("background-color: #008CBA; /* blue */\n"
-"border: none;\n"
-" color: white;\n"
-"padding: 15px 32px;\n"
-"\n"
-"text-decoration: none;\n"
-"\n"
-"font-size: 16px;\n"
-"border-radius: 8px;")
-        self.b4.setObjectName("b4")
-        self.grid.addWidget(self.b4, 1, 0, 1, 1)
-        self.b6 = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.b6.setStyleSheet("background-color: #008CBA; /* blue */\n"
-"border: none;\n"
-" color: white;\n"
-"padding: 15px 32px;\n"
-"text-align: center;\n"
-"text-decoration: none;\n"
-"display: inline-block;\n"
-"font-size: 16px;\n"
-"border-radius: 8px;")
-        self.b6.setObjectName("b6")
-        self.grid.addWidget(self.b6, 1, 2, 1, 1)
-        self.bEnter = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.bEnter.setStyleSheet("background-color: #008CBA; /* blue */\n"
-"border: none;\n"
-" color: white;\n"
-"padding: 15px 32px;\n"
-"text-align: center;\n"
-"text-decoration: none;\n"
-"display: inline-block;\n"
-"font-size: 16px;\n"
-"border-radius: 8px;")
-        self.bEnter.setObjectName("bEnter")
-        self.grid.addWidget(self.bEnter, 3, 2, 1, 1)
-        self.bApagar = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.bApagar.setStyleSheet("background-color: #008CBA; /* blue */\n"
-"border: none;\n"
-" color: white;\n"
-"padding: 15px 32px;\n"
-"text-decoration: none;\n"
-"font-size: 16px;\n"
-"border-radius: 8px;")
-        self.bApagar.setObjectName("bApagar")
-        self.grid.addWidget(self.bApagar, 3, 0, 1, 1)
-        self.b2 = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.b2.setStyleSheet("background-color: #008CBA; /* blue */\n"
-"border: none;\n"
-" color: white;\n"
-"padding: 15px 32px;\n"
-"text-align: center;\n"
-"text-decoration: none;\n"
-"display: inline-block;\n"
-"font-size: 16px;\n"
-"border-radius: 8px;")
-        self.b2.setObjectName("b2")
-        self.grid.addWidget(self.b2, 2, 1, 1, 1)
         self.b5 = QtWidgets.QPushButton(self.gridLayoutWidget)
         self.b5.setStyleSheet("background-color: #008CBA; /* blue */\n"
 "border: none;\n"
@@ -96,6 +38,100 @@ class Ui_Dialog(object):
 "border-radius: 8px;")
         self.b5.setObjectName("b5")
         self.grid.addWidget(self.b5, 1, 1, 1, 1)
+        self.b0 = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.b0.setStyleSheet("background-color: #008CBA; /* blue */\n"
+"border: none;\n"
+" color: white;\n"
+"padding: 15px 32px;\n"
+"text-align: center;\n"
+"text-decoration: none;\n"
+"display: inline-block;\n"
+"font-size: 16px;\n"
+"border-radius: 8px;")
+        self.b0.setObjectName("b0")
+        self.grid.addWidget(self.b0, 3, 1, 1, 1)
+        self.b4 = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.b4.setStyleSheet("background-color: #008CBA; /* blue */\n"
+"border: none;\n"
+" color: white;\n"
+"padding: 15px 32px;\n"
+"\n"
+"text-decoration: none;\n"
+"\n"
+"font-size: 16px;\n"
+"border-radius: 8px;")
+        self.b4.setObjectName("b4")
+        self.grid.addWidget(self.b4, 1, 0, 1, 1)
+        self.bEnter = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.bEnter.setStyleSheet("background-color: #008CBA; /* blue */\n"
+"border: none;\n"
+" color: white;\n"
+"padding: 15px 32px;\n"
+"text-align: center;\n"
+"text-decoration: none;\n"
+"display: inline-block;\n"
+"font-size: 16px;\n"
+"border-radius: 8px;")
+        self.bEnter.setObjectName("bEnter")
+        self.grid.addWidget(self.bEnter, 3, 2, 1, 1)
+        self.b7 = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.b7.setStyleSheet("background-color: #008CBA; /* blue */\n"
+"border: none;\n"
+" color: white;\n"
+"padding: 15px 32px;\n"
+"text-align: center;\n"
+"text-decoration: none;\n"
+"display: inline-block;\n"
+"font-size: 16px;\n"
+"border-radius: 8px;")
+        self.b7.setObjectName("b7")
+        self.grid.addWidget(self.b7, 0, 0, 1, 1)
+        self.b6 = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.b6.setStyleSheet("background-color: #008CBA; /* blue */\n"
+"border: none;\n"
+" color: white;\n"
+"padding: 15px 32px;\n"
+"text-align: center;\n"
+"text-decoration: none;\n"
+"display: inline-block;\n"
+"font-size: 16px;\n"
+"border-radius: 8px;")
+        self.b6.setObjectName("b6")
+        self.grid.addWidget(self.b6, 1, 2, 1, 1)
+        self.bApagar = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.bApagar.setStyleSheet("background-color: #008CBA; /* blue */\n"
+"border: none;\n"
+" color: white;\n"
+"padding: 15px 32px;\n"
+"text-decoration: none;\n"
+"font-size: 16px;\n"
+"border-radius: 8px;")
+        self.bApagar.setObjectName("bApagar")
+        self.grid.addWidget(self.bApagar, 3, 0, 1, 1)
+        self.b3 = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.b3.setStyleSheet("background-color: #008CBA; /* blue */\n"
+"border: none;\n"
+" color: white;\n"
+"padding: 15px 32px;\n"
+"text-align: center;\n"
+"text-decoration: none;\n"
+"display: inline-block;\n"
+"font-size: 16px;\n"
+"border-radius: 8px;")
+        self.b3.setObjectName("b3")
+        self.grid.addWidget(self.b3, 2, 2, 1, 1)
+        self.b1 = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.b1.setStyleSheet("background-color: #008CBA; /* blue */\n"
+"border: none;\n"
+" color: white;\n"
+"padding: 15px 32px;\n"
+"\n"
+"text-decoration: none;\n"
+"\n"
+"font-size: 16px;\n"
+"border-radius: 8px;")
+        self.b1.setObjectName("b1")
+        self.grid.addWidget(self.b1, 2, 0, 1, 1)
         self.b8 = QtWidgets.QPushButton(self.gridLayoutWidget)
         self.b8.setStyleSheet("background-color: #008CBA; /* blue */\n"
 "border: none;\n"
@@ -120,20 +156,8 @@ class Ui_Dialog(object):
 "border-radius: 8px;")
         self.b9.setObjectName("b9")
         self.grid.addWidget(self.b9, 0, 2, 1, 1)
-        self.b1 = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.b1.setStyleSheet("background-color: #008CBA; /* blue */\n"
-"border: none;\n"
-" color: white;\n"
-"padding: 15px 32px;\n"
-"\n"
-"text-decoration: none;\n"
-"\n"
-"font-size: 16px;\n"
-"border-radius: 8px;")
-        self.b1.setObjectName("b1")
-        self.grid.addWidget(self.b1, 2, 0, 1, 1)
-        self.b7 = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.b7.setStyleSheet("background-color: #008CBA; /* blue */\n"
+        self.b2 = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.b2.setStyleSheet("background-color: #008CBA; /* blue */\n"
 "border: none;\n"
 " color: white;\n"
 "padding: 15px 32px;\n"
@@ -142,32 +166,8 @@ class Ui_Dialog(object):
 "display: inline-block;\n"
 "font-size: 16px;\n"
 "border-radius: 8px;")
-        self.b7.setObjectName("b7")
-        self.grid.addWidget(self.b7, 0, 0, 1, 1)
-        self.b0 = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.b0.setStyleSheet("background-color: #008CBA; /* blue */\n"
-"border: none;\n"
-" color: white;\n"
-"padding: 15px 32px;\n"
-"text-align: center;\n"
-"text-decoration: none;\n"
-"display: inline-block;\n"
-"font-size: 16px;\n"
-"border-radius: 8px;")
-        self.b0.setObjectName("b0")
-        self.grid.addWidget(self.b0, 3, 1, 1, 1)
-        self.b3 = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.b3.setStyleSheet("background-color: #008CBA; /* blue */\n"
-"border: none;\n"
-" color: white;\n"
-"padding: 15px 32px;\n"
-"text-align: center;\n"
-"text-decoration: none;\n"
-"display: inline-block;\n"
-"font-size: 16px;\n"
-"border-radius: 8px;")
-        self.b3.setObjectName("b3")
-        self.grid.addWidget(self.b3, 2, 2, 1, 1)
+        self.b2.setObjectName("b2")
+        self.grid.addWidget(self.b2, 2, 1, 1, 1)
         self.label_registro = QtWidgets.QLabel(Dialog)
         self.label_registro.setGeometry(QtCore.QRect(460, 0, 221, 81))
         self.label_registro.setStyleSheet("font: 75 28pt \"MS Shell Dlg 2\";\n"
@@ -301,6 +301,15 @@ class Ui_Dialog(object):
         self.label_ID.setGeometry(QtCore.QRect(760, 110, 321, 51))
         self.label_ID.setStyleSheet("font: 16pt \"Yu Gothic UI Semibold\";")
         self.label_ID.setObjectName("label_ID")
+        self.label_imagem = QtWidgets.QLabel(Dialog)
+        self.label_imagem.setGeometry(QtCore.QRect(105, 500, 200, 200))
+        self.label_imagem.setStyleSheet("font: 63 11pt \"Yu Gothic UI Semibold\";\n"
+"border: 2px solid rgb(0,0,0);\n"
+"border-radius: 8px;\n"
+"\n"
+"")
+        self.label_imagem.setText("")
+        self.label_imagem.setObjectName("label_imagem")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -308,18 +317,18 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.b4.setText(_translate("Dialog", "4"))
-        self.b6.setText(_translate("Dialog", "6"))
-        self.bEnter.setText(_translate("Dialog", "Enter"))
-        self.bApagar.setText(_translate("Dialog", "Apagar"))
-        self.b2.setText(_translate("Dialog", "2"))
         self.b5.setText(_translate("Dialog", "5"))
+        self.b0.setText(_translate("Dialog", "0"))
+        self.b4.setText(_translate("Dialog", "4"))
+        self.bEnter.setText(_translate("Dialog", "Enter"))
+        self.b7.setText(_translate("Dialog", "7"))
+        self.b6.setText(_translate("Dialog", "6"))
+        self.bApagar.setText(_translate("Dialog", "Apagar"))
+        self.b3.setText(_translate("Dialog", "3"))
+        self.b1.setText(_translate("Dialog", "1"))
         self.b8.setText(_translate("Dialog", "8"))
         self.b9.setText(_translate("Dialog", "9"))
-        self.b1.setText(_translate("Dialog", "1"))
-        self.b7.setText(_translate("Dialog", "7"))
-        self.b0.setText(_translate("Dialog", "0"))
-        self.b3.setText(_translate("Dialog", "3"))
+        self.b2.setText(_translate("Dialog", "2"))
         self.label_registro.setText(_translate("Dialog", "Registro"))
         self.label_nome.setText(_translate("Dialog", "Nome completo:"))
         self.label_senha.setText(_translate("Dialog", "Senha:"))
