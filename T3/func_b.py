@@ -4,6 +4,7 @@ import random
 import string
 from PyQt5 import QtCore, QtGui, QtWidgets
 from ui import Ui_Dialog
+from datetime import datetime
 
 dados_senha=0
 senhas=0
@@ -209,17 +210,8 @@ def func_confere_ID_senha():
      con.close()
      print("retornando False porque não achou ID e senhas compativeis")           
      return False           
-def func_bApagar():
-     global senha_digitada
-     global ID_digitado
-     global marcador_ID_senha
-     marcador_ID_senha=0
-     senha_digitada=""
-     ID_digitado=""
-     ui.label_digite_a_senha.setText("Digite a senha: ")
-     ui.label_digite_o_ID.setText("Digite o ID: ")
-     ui.label_acesso.setText("Acesso:")
-def func_check_local(ID_digitado):#############################3
+
+def func_check_local(ID_digitado):
      print("checando se o individuo esta no local certo")
      global entrada
      con = sqlite3.connect('tutorial2.db')
@@ -245,6 +237,53 @@ def func_check_local(ID_digitado):#############################3
                print(str(i)+" diferente de: "+ID_digitado)
                
           print(i)
+
+def func_bApagar():
+     global senha_digitada
+     global ID_digitado
+     global marcador_ID_senha
+     marcador_ID_senha=0
+     senha_digitada=""
+     ID_digitado=""
+     ui.label_digite_a_senha.setText("Digite a senha: ")
+     ui.label_digite_o_ID.setText("Digite o ID: ")
+     ui.label_acesso.setText("Acesso:")
+     
+def func_current_time():
+    now = datetime.now()
+    hour_minute_str = now.strftime("%H:%M")
+    return hour_minute_str
+def func_time_to_minutes(time_str):
+    if time_str=="":
+         return 0
+    hours, minutes = map(int, time_str.split(':'))
+    total_minutes = hours * 60 + minutes
+    
+    return total_minutes
+def func_check_horario(ID_digitado):
+     con=sqlite3.connect("tutorial2.db")
+     cur=con.cursor()
+     query="select h_entrada from registro where ID="+ID_digitado
+     query2="select h_saida from registro where ID="+ID_digitado
+     dados_horas=cur.execute(query)
+     dados_horas=dados_horas.fetchall()
+     dados_horas2=cur.execute(query2)
+     dados_horas2=dados_horas2.fetchall()
+     con.close()
+     for i in dados_horas:
+          j=func_time_to_minutes(i[0])
+          k=func_time_to_minutes(func_current_time())
+          print("j: "+str(j)+" k: "+str(k))
+          if j<=k:
+               for o in dados_horas2:
+                    j=func_time_to_minutes(o[0])
+                    k=func_time_to_minutes(func_current_time())
+                    print("j: "+str(j)+" k: "+str(k))
+                    if j>=k:
+                         return True
+          else:
+               return False
+
 def func_bEnter():##########################################
      global ui
      global marcador_ID_senha
@@ -285,9 +324,13 @@ def func_bEnter():##########################################
           func_bApagar()
           ui.label_acesso.setText("Acesso: Negado")
      if marcador_ID_senha==3:
-          func_bApagar()
-          ui.label_acesso.setText("Acesso: Autorizado")
-
+          if func_check_horario(ID_digitado):
+               func_bApagar()
+               ui.label_acesso.setText("Acesso: Autorizado")
+          else:
+               func_bApagar()
+               ui.label_acesso.setText("Acesso: Negado, fora de horario")
+          
 
      
                
