@@ -1,9 +1,4 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
-from ui import Ui_Dialog
 from func_b import *
-import sqlite3
-
-
      
 if __name__ == "__main__":
     import sys

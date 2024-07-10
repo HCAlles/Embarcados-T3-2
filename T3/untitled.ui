@@ -31,7 +31,7 @@
      <x>20</x>
      <y>240</y>
      <width>371</width>
-     <height>231</height>
+     <height>252</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="grid">
@@ -50,6 +50,42 @@
     <property name="spacing">
      <number>6</number>
     </property>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="b4">
+      <property name="styleSheet">
+       <string notr="true">background-color: #008CBA; /* blue */
+border: none;
+ color: white;
+padding: 15px 32px;
+
+text-decoration: none;
+
+font-size: 16px;
+border-radius: 8px;</string>
+      </property>
+      <property name="text">
+       <string>4</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QPushButton" name="b6">
+      <property name="styleSheet">
+       <string notr="true">background-color: #008CBA; /* blue */
+border: none;
+ color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+border-radius: 8px;</string>
+      </property>
+      <property name="text">
+       <string>6</string>
+      </property>
+     </widget>
+    </item>
     <item row="3" column="2">
      <widget class="QPushButton" name="bEnter">
       <property name="styleSheet">
@@ -65,6 +101,58 @@ border-radius: 8px;</string>
       </property>
       <property name="text">
        <string>Enter</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QPushButton" name="bApagar">
+      <property name="styleSheet">
+       <string notr="true">background-color: #008CBA; /* blue */
+border: none;
+ color: white;
+padding: 15px 32px;
+text-decoration: none;
+font-size: 16px;
+border-radius: 8px;</string>
+      </property>
+      <property name="text">
+       <string>Apagar</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="b2">
+      <property name="styleSheet">
+       <string notr="true">background-color: #008CBA; /* blue */
+border: none;
+ color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+border-radius: 8px;</string>
+      </property>
+      <property name="text">
+       <string>2</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QPushButton" name="b5">
+      <property name="styleSheet">
+       <string notr="true">background-color: #008CBA; /* blue */
+border: none;
+ color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+border-radius: 8px;</string>
+      </property>
+      <property name="text">
+       <string>5</string>
       </property>
      </widget>
     </item>
@@ -86,6 +174,24 @@ border-radius: 8px;</string>
       </property>
      </widget>
     </item>
+    <item row="0" column="2">
+     <widget class="QPushButton" name="b9">
+      <property name="styleSheet">
+       <string notr="true">background-color: #008CBA; /* blue */
+border: none;
+ color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+border-radius: 8px;</string>
+      </property>
+      <property name="text">
+       <string>9</string>
+      </property>
+     </widget>
+    </item>
     <item row="2" column="0">
      <widget class="QPushButton" name="b1">
       <property name="styleSheet">
@@ -101,24 +207,6 @@ border-radius: 8px;</string>
       </property>
       <property name="text">
        <string>1</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QPushButton" name="b5">
-      <property name="styleSheet">
-       <string notr="true">background-color: #008CBA; /* blue */
-border: none;
- color: white;
-padding: 15px 32px;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-font-size: 16px;
-border-radius: 8px;</string>
-      </property>
-      <property name="text">
-       <string>5</string>
       </property>
      </widget>
     </item>
@@ -176,101 +264,13 @@ border-radius: 8px;</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
-     <widget class="QPushButton" name="b2">
-      <property name="styleSheet">
-       <string notr="true">background-color: #008CBA; /* blue */
-border: none;
- color: white;
-padding: 15px 32px;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-font-size: 16px;
-border-radius: 8px;</string>
-      </property>
-      <property name="text">
-       <string>2</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0">
-     <widget class="QPushButton" name="bApagar">
-      <property name="styleSheet">
-       <string notr="true">background-color: #008CBA; /* blue */
-border: none;
- color: white;
-padding: 15px 32px;
-text-decoration: none;
-font-size: 16px;
-border-radius: 8px;</string>
-      </property>
-      <property name="text">
-       <string>Apagar</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="2">
-     <widget class="QPushButton" name="b9">
-      <property name="styleSheet">
-       <string notr="true">background-color: #008CBA; /* blue */
-border: none;
- color: white;
-padding: 15px 32px;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-font-size: 16px;
-border-radius: 8px;</string>
-      </property>
-      <property name="text">
-       <string>9</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QPushButton" name="b4">
-      <property name="styleSheet">
-       <string notr="true">background-color: #008CBA; /* blue */
-border: none;
- color: white;
-padding: 15px 32px;
-
-text-decoration: none;
-
-font-size: 16px;
-border-radius: 8px;</string>
-      </property>
-      <property name="text">
-       <string>4</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="2">
-     <widget class="QPushButton" name="b6">
-      <property name="styleSheet">
-       <string notr="true">background-color: #008CBA; /* blue */
-border: none;
- color: white;
-padding: 15px 32px;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-font-size: 16px;
-border-radius: 8px;</string>
-      </property>
-      <property name="text">
-       <string>6</string>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QLabel" name="label_registro">
    <property name="geometry">
     <rect>
      <x>460</x>
-     <y>30</y>
+     <y>0</y>
      <width>221</width>
      <height>81</height>
     </rect>
@@ -293,9 +293,9 @@ border-radius: 8px;</string>
    <property name="geometry">
     <rect>
      <x>410</x>
-     <y>140</y>
+     <y>100</y>
      <width>321</width>
-     <height>331</height>
+     <height>441</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -340,6 +340,42 @@ border-radius: 8px;</string>
     </item>
     <item>
      <widget class="QLineEdit" name="lineEdit_funcao">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_h_entrada">
+      <property name="styleSheet">
+       <string notr="true">font: 63 11pt &quot;Yu Gothic UI Semibold&quot;;
+</string>
+      </property>
+      <property name="text">
+       <string>Horario de entrada:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit_h_entrada">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_h_saida">
+      <property name="styleSheet">
+       <string notr="true">font: 63 11pt &quot;Yu Gothic UI Semibold&quot;;
+</string>
+      </property>
+      <property name="text">
+       <string>Horario de saida:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit_h_saida">
       <property name="text">
        <string/>
       </property>
@@ -474,10 +510,10 @@ border-radius: 8px;</string>
   <widget class="QLabel" name="label_ID">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>480</y>
+     <x>760</x>
+     <y>110</y>
      <width>321</width>
-     <height>81</height>
+     <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">

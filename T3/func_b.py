@@ -1,12 +1,14 @@
-from main import*
 import sqlite3
 import sys
 import random
 import string
+from PyQt5 import QtCore, QtGui, QtWidgets
+from ui import Ui_Dialog
 
 dados_senha=0
 senhas=0
-entrada=True
+entrada="1"
+entradaT_F=True
 marcador_ID_senha=0
 ID=""
 ID_digitado=""
@@ -21,7 +23,6 @@ def func_transform_to_random_digits(input_string):
     random.seed(input_string)
     random_digits = ''.join(random.choices('0123456789', k=5))
     return str(random_digits)
-
 def func_contains_non_digit_characters(input_string):
     for char in input_string:
         if not char.isdigit():
@@ -99,25 +100,34 @@ def func_b9():
      print("b9 clicado")
      func_atualiza_display("9")
 
-def func_bEntrada_saida():
+def func_bEntrada_saida():#var global entrada: 0 ou 1
      global entrada
+     global entradaT_F
      global ui
-     entrada=not entrada
-     if(entrada):
+     entradaT_F=not entradaT_F
+     if(entradaT_F):
+          entrada="0"
+          print("setando entrada= "+entrada)
           ui.bEntrada_saida.setText("entrada")
-     else: ui.bEntrada_saida.setText("saida")
+     else: 
+          entrada="1"
+          print("setando entrada= "+entrada)
+          ui.bEntrada_saida.setText("saida")
+
 
 def func_bCadastrar():
      global ui
-     con=sqlite3.connect("tutorial.db")
+     con=sqlite3.connect("tutorial2.db")
      cur=con.cursor()
      print("bCadastrar clicado")
      ui.label_senha.setText("Senha: "+ui.lineEdit_senha.text())
      ui.label_funcao.setText("Funcao: "+ui.lineEdit_funcao.text())
      ui.label_nome.setText("Nome: "+ui.lineEdit_nome.text())
+     ui.label_h_entrada.setText("Hora entrada: "+ui.lineEdit_h_entrada.text())
+     ui.label_h_saida.setText("Hora saida: "+ui.lineEdit_h_saida.text())
      ID_final=func_transform_to_random_digits(ui.lineEdit_nome.text())
-     #ui.label_ID.setText("Registro  Seu ID é: "+ID_final)
-     string_cadastro="INSERT into registro values "+"('"+ui.lineEdit_nome.text()+"','"+ui.lineEdit_senha.text()+"','"+ui.lineEdit_funcao.text()+"','"+ID_final+"')"
+     string_cadastro="INSERT into registro values "+"('"+ui.lineEdit_nome.text()+"','"+ui.lineEdit_senha.text()+"','"+ui.lineEdit_funcao.text()+"','"+ID_final
+     string_cadastro=string_cadastro+"','"+ui.lineEdit_h_entrada.text()+"','"+ui.lineEdit_h_saida.text()+"','"+"0"+"')"
      print("string cadastro é: "+string_cadastro)
      
      if func_check_cadastro()==False:
@@ -134,14 +144,14 @@ def func_bCadastrar():
 def func_check_cadastro():
      global ui
      s=ui.lineEdit_senha.text()
-     con = sqlite3.connect('tutorial.db')
+     con = sqlite3.connect('tutorial2.db')
      cur = con.cursor()
      dados=cur.execute("""select * from registro""")
      dados=dados.fetchall()
      print(dados)
      contador=0 #conta quantos informações são repitidas
      for cont in dados:
-          for i in range(0,3):
+          for i in range(0,2):
                match i:
                     case 0:
                          s=ui.lineEdit_nome.text()
@@ -168,12 +178,12 @@ def func_check_cadastro():
                     print("Senha só pode ter numeros")
                     ui.label_senha.setText("Senha: senha só pode ter numeros")
                
-def func_confere_ID_senha():######################################
+def func_confere_ID_senha():
      print("conferindo ID")   
      global ui
      global ID_digitado
      global senha_digitada
-     con = sqlite3.connect('tutorial.db')
+     con = sqlite3.connect('tutorial2.db')
      cur = con.cursor()
      dados_ID=cur.execute("""select ID from registro""")
      dados_ID=dados_ID.fetchall()
@@ -209,17 +219,65 @@ def func_bApagar():
      ui.label_digite_a_senha.setText("Digite a senha: ")
      ui.label_digite_o_ID.setText("Digite o ID: ")
      ui.label_acesso.setText("Acesso:")
-     
+def func_check_local(ID_digitado):#############################3
+     print("checando se o individuo esta no local certo")
+     global entrada
+     con = sqlite3.connect('tutorial2.db')
+     cur = con.cursor()
+     quary="select "+ID_digitado+" from registro"
+     dados_ID=cur.execute(quary)
+     dados_ID=dados_ID.fetchall()     
+     for i in dados_ID:
+          if str(i[0])==ID_digitado:
+               print("encontrou")
+               quary="select status_local from registro where ID="+ID_digitado
+               dados_status_local=cur.execute(quary)
+               dados_status_local=dados_status_local.fetchall() 
+               print(dados_status_local)
+               con.close()
+               if dados_status_local[0][0]==entrada:
+                    return True
+               else:
+                    print(str(dados_status_local[0][0])+" diferente de "+entrada)
+                    return False
+
+          else:
+               print(str(i)+" diferente de: "+ID_digitado)
+               
+          print(i)
 def func_bEnter():##########################################
      global ui
      global marcador_ID_senha
+     global ID_digitado
+     global entrada
      print("bEnter clicado")
      if marcador_ID_senha==1:
           if func_confere_ID_senha():
-               print("acesso autorizado")
-               marcador_ID_senha=3
+               if func_check_local(ID_digitado):
+                    print("acesso autorizado")#########################
+                    #invertendo entrada para colocar na DB
+                    entrada2=""
+                    match entrada:
+                         case "1":
+                              entrada2="0"
+                         case "0":
+                              entrada2="1"
+                         case _:
+                              print("erro no match entrada")
+                    con=sqlite3.connect("tutorial2.db")
+                    cur=con.cursor()
+                    quary = "UPDATE registro SET status_local ="+entrada2 +" WHERE ID ="+ID_digitado
+                    cur.execute(quary)
+                    print("tentando setar status_local em "+entrada2)
+                    con.commit()
+                    #con.close()
+                    marcador_ID_senha=3
+               else:
+                    print("acesso negado porque entrada==func_check_local() retornou False")
+                    #print(str(entrada)+" diferente de: "+str(func_check_local(ID_digitado)))
+                    marcador_ID_senha=2
           else:
-               print("acesso negado")
+               print("acesso negado porque func_check_ID_senha() retornou False")
                marcador_ID_senha=2
      if  marcador_ID_senha==0:
           marcador_ID_senha+=1
